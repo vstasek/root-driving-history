@@ -31,7 +31,7 @@ module DrivingHistory
     end
 
     def avg_mph
-      @total_miles_driven / @total_hours_driven
+      @trips.size > 0 ? @total_miles_driven / @total_hours_driven : 0
     end
   end
 end
