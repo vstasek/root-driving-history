@@ -31,4 +31,14 @@ RSpec.describe DrivingHistory::Driver do
       end
     end
   end
+
+  describe '#avg_mph' do
+    before(:example) do
+      driver.add_trip('13:00', '14:30', 63)
+    end
+    
+    it 'calculates average miles per hour' do
+      expect(driver.avg_mph).to eq(42)
+    end
+  end
 end
