@@ -24,8 +24,14 @@ module DrivingHistory
       elsif new_trip.avg_mph > 100 then
         STDERR.puts "#{name}'s Trip that took place between #{start} and #{stop} was not recorded as the avg mph was greater than 100mph."
       else
+        @total_miles_driven += new_trip.miles
+        @total_hours_driven += new_trip.hours
         @trips.push new_trip
       end
+    end
+
+    def avg_mph
+      @total_miles_driven / @total_hours_driven
     end
   end
 end
