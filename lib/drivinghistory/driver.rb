@@ -15,5 +15,10 @@ module DrivingHistory
       @total_miles_driven = 0.0
       @total_hours_driven = 0.0
     end
+
+    def add_trip start, stop, miles
+      new_trip = DrivingHistory::Trip.new(start, stop, miles)
+      @trips.push new_trip
+    end
   end
 end
