@@ -32,13 +32,37 @@ RSpec.describe DrivingHistory::Driver do
     end
   end
 
-  describe '#avg_mph' do
+  context 'with no trips' do
+    describe '#avg_mph' do
+      it 'is 0' do
+        expect(driver.avg_mph).to eq(0)
+      end
+    end
+  end
+
+  context 'with 1 trip' do
     before(:example) do
       driver.add_trip('13:00', '14:30', 63)
     end
+    
+    describe '#avg_mph' do
+      it 'calculates average miles per hour' do
+        expect(driver.avg_mph).to eq(42)
+      end
+    end
+  end
 
-    it 'calculates average miles per hour across all Trips' do
-      expect(driver.avg_mph).to eq(42)
+  context 'with multiple trips' do
+    before(:example) do
+      driver.add_trip('14:20', '14:40', 20)
+      driver.add_trip('02:00', '05:00', 55)
+      driver.add_trip('07:30', '15:25', 510)
+    end
+
+    describe '#avg_mph' do
+      it 'calculates average miles per hour' do
+        expect(driver.avg_mph).to eq(52)
+      end
     end
   end
 end
