@@ -4,6 +4,8 @@ this_dir = File.dirname(__FILE__)
 lib_dir  = File.join(this_dir,  '..', 'lib')
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
+require "drivinghistory/engine"
+
 driver_data = ARGV[0]
 
 if driver_data.nil?
@@ -14,3 +16,7 @@ if driver_data.nil?
 
   exit
 end
+
+drivers = DrivingHistory::Engine.import(driver_data)
+drivers = DrivingHistory::Engine.sort(drivers, "total_miles_driven")
+DrivingHistory::Engine.report(drivers)
