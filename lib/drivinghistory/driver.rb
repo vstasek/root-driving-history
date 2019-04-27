@@ -16,6 +16,12 @@ module DrivingHistory
       @total_hours_driven = 0.0
     end
 
+    def ==(o)
+      # override == so we can compare by value
+      name == o.name &&
+      trips == o.trips
+    end
+
     def add_trip start, stop, miles
       new_trip = DrivingHistory::Trip.new(start, stop, miles)
       

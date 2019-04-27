@@ -18,5 +18,12 @@ module DrivingHistory
       @hours = (@stop - @start).to_f / 60 / 60
       @avg_mph = @miles / @hours
     end
+
+    def ==(o)
+      # override == so we can compare by value
+      start == o.start &&
+      stop == o.stop &&
+      miles == o.miles
+    end
   end
 end
